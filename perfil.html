@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil | Sakura Delivery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+  <header class="cabecalho">
+    <a href="index.html" class="logo"><span class="logo-sol"></span>Sakura Delivery</a>
+
+    <button class="botao-menu" id="botao-menu" type="button" aria-label="Abrir menu" aria-expanded="false" onclick="alternarMenu()">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="menu" id="menu">
+      <div class="menu-links">
+        <a href="index.html">Início</a>
+        <a href="produtos.html">Produtos</a>
+        <a href="pedidos.html">Pedidos</a>
+        <a href="carrinho.html">Carrinho (<span class="contador-carrinho">0</span>)</a>
+        <a href="perfil.html" class="ativo">Perfil</a>
+      </div>
+
+      <form class="busca-topo" action="produtos.html" method="get">
+        <input type="search" name="busca" placeholder="Buscar prato..." maxlength="40" aria-label="Buscar prato">
+        <button class="botao" type="submit">Buscar</button>
+      </form>
+
+      <button class="botao" id="botao-tema" type="button" onclick="alternarTema()">Modo escuro</button>
+
+      <div class="area-usuario" id="area-usuario">
+        <button class="botao" type="button" onclick="abrirLogin()">Entrar</button>
+        <a class="botao botao-principal" href="cadastro.html">Cadastrar</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="conteudo">
+    <p class="aviso-vazio oculto" id="aviso-perfil">Você não está logado. <a href="#" onclick="abrirLogin(); return false;">Entre</a> ou <a href="cadastro.html">crie uma conta</a>.</p>
+
+    <div class="layout-perfil" id="area-perfil">
+      <aside class="caixa cartao-usuario">
+        <div class="avatar" id="perfil-avatar"></div>
+        <h2 id="perfil-nome-titulo"></h2>
+        <p id="perfil-email-texto"></p>
+        <a href="pedidos.html">Ver meus pedidos</a>
+      </aside>
+
+      <form class="caixa formulario" onsubmit="salvarPerfil(event)">
+        <h1>Meus dados</h1>
+        <div class="grade-campos">
+          <label class="campo">Nome completo
+            <input type="text" id="perfil-nome" maxlength="60" required>
+          </label>
+          <label class="campo">Telefone
+            <input type="text" id="perfil-telefone" data-mascara="(##) #####-####" inputmode="numeric" maxlength="15" required>
+          </label>
+          <label class="campo">CEP
+            <input type="text" id="perfil-cep" data-mascara="#####-###" inputmode="numeric" maxlength="9" required>
+          </label>
+          <label class="campo">Número da casa
+            <input type="text" id="perfil-numero" class="so-numeros" inputmode="numeric" maxlength="6" required>
+          </label>
+          <label class="campo">Endereço
+            <input type="text" id="perfil-endereco" maxlength="80" required>
+          </label>
+        </div>
+        <p class="mensagem" id="mensagem-perfil"></p>
+        <div class="linha-botoes">
+          <button class="botao botao-principal" type="submit">Salvar alterações</button>
+          <button class="botao" type="button" onclick="excluirConta()">Excluir conta</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <div class="rodape-colunas">
+      <div>
+        <h3>Sakura Delivery</h3>
+        <p>Comida japonesa preparada na hora.</p>
+      </div>
+      <div>
+        <h3>Atendimento</h3>
+        <p>Terça a domingo, das 18h às 23h</p>
+        <p>(31) 99999-0000</p>
+      </div>
+      <div>
+        <h3>Redes sociais</h3>
+        <p>@sakuradelivery</p>
+      </div>
+    </div>
+    <p class="rodape-copia">© 2026 Sakura Delivery. Projeto acadêmico.</p>
+  </footer>
+
+  <!-- Pop-up de login -->
+  <div class="modal" id="modal-login">
+    <div class="modal-caixa" role="dialog" aria-modal="true" aria-labelledby="titulo-login">
+      <button class="modal-fechar" type="button" aria-label="Fechar" onclick="fecharLogin()">&times;</button>
+      <h2 id="titulo-login">Entrar</h2>
+      <form onsubmit="fazerLogin(event)">
+        <label class="campo">E-mail
+          <input type="email" id="login-email" maxlength="60" required>
+        </label>
+        <label class="campo">Senha
+          <input type="password" id="login-senha" maxlength="20" required>
+        </label>
+        <p class="mensagem" id="mensagem-login"></p>
+        <button class="botao botao-principal botao-largo" type="submit">Entrar</button>
+      </form>
+      <p>Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
